@@ -1,0 +1,110 @@
+
+@import "master"; // import variables & mixins
+
+// ************ Stylesheet for custom theme - admin panel ************ //
+
+.acf-image-uploader img[src$=".svg"]{
+	max-width: 150px;
+}
+
+
+// test to show that this stylesheet is being used - obviously, comment this out!
+
+	//body { background-color: red !important; }
+
+// disable menu links to posts categories and tags etc if not supported by the theme
+
+	#menu-posts a[href*="edit-tags.php?taxonomy="], // covers Categories and Tags links, for normal posts only
+	#menu-posts a[href="edit.php?page=to-interface-post"] { // this link is added by the Taxonomy Order plugin
+		//display: none;
+	}
+
+// hide things
+
+	#nav-menu-meta #add-post_tag, // creating menu items of post tags
+	#menu-posts-wysiwyg-widget a[href="edit.php?post_type=wysiwyg-widget&page=order-post-types-wysiwyg-widget"], // re-ordering widget blocks
+	//#menu-comments, // entire comments section
+	//#menu-appearance a[href="customize.php"],
+	//#menu-appearance a[href="theme-editor.php"],
+	//#menu-plugins a[href="plugin-editor.php"],
+	.chradmincss--placeholderonly {
+		display: none;
+	}
+	
+	// quick edit & bulk edit hides
+	.inline-edit-row-post {
+	
+		.inline-edit-categories, // quick edit categories
+		.inline-edit-tags, // quick edit tags
+		.chradmincss--placeholderonly {
+			display: none;
+		}
+		
+		input, select {
+			&[name="comment_status"], // quick edit comments
+			&[name="ping_status"], // quick edit comments
+			&[name="sticky"], // quick edit comments
+			.chradmincss--placeholderonly {
+				display: none;
+				+ span { display: none; } // ... and labels
+			}
+		}
+		
+	} // .inline-edit-row-post
+
+// hide promo message for Post Types re-ordering plugin
+
+	#cpt_info_box { display: none; }
+
+// style ACF messages
+
+	//#acf_356 { background-color: #FFFFE1; padding: 5px 20px; .field { padding: 0; } }
+	
+// make ACF children ULs in a list of checkboxes look a bit nicer
+
+	.acf-taxonomy-field .acf-checkbox-list .children { padding-top: 7px; }
+	
+// turn off the min-height set by ACF
+
+	.acf_postbox .field textarea { min-height: 0 !important; }
+
+// reduce massive width assigned to the custom post types featured image column
+
+	.wp-admin.edit-php .wp-list-table .column-featured_image,
+	.wp-admin.edit-tags-php .wp-list-table .column-featured_image { width: 50px; }
+	
+// admin panel custom image selectors/uploaders
+
+	p.field-chr_image {
+		@include same(border-top,border-bottom,1px dotted #ddd);
+		margin: 1.5em 0;
+		padding: 1em 0;
+	
+		.chr_image_preview[data-chr-enabled="true"] {
+			display: block;
+			width: 26%; // approx 100px - we want to use percentage to control its width against the caption
+			height: 100px;
+			background-size: cover;
+			background-repeat: no-repeat;
+			float: right;
+			border: 1px #eee solid;
+			cursor: default;
+			margin-top: -1em;
+		}
+		
+		.chr_image_select { float: left; clear: left; margin-top: .5em; }
+		.chr_image_remove { float: left; clear: left; margin-top: .25em; }
+		
+		.chr_image_caption {
+			float: left;
+			clear: left;
+			font-size: .75em;
+			margin-top: 1em; color: #346011;
+			font-style: normal;
+			max-width: 70%; // stop it from hitting the image and breaking to underneath it
+			word-wrap: break-word;
+		}
+		
+	} // .field-chr_image
+
+// ***************************** The end! **************************** //

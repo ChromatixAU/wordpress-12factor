@@ -1,0 +1,158 @@
+//Main product styling
+//Flexbile content located in page.scss
+.item.product{
+
+	.initial_content_wrap{
+		background-color: $darkbggrey;
+		
+	}
+
+	.initial_content{
+		@include media_query($tb){
+			padding-top: 130px;
+		}
+		padding-top: 195px;
+		padding-bottom: 75px;
+		position: relative;
+
+		&.centred{
+			padding-bottom: 0;
+		}
+	}
+
+	.left_product_image{
+		float: left;
+		width: 48%;
+		overflow: hidden;
+
+		img{
+			@include bg-trick;
+			height: 500px;
+			background-size: contain;
+		}
+
+		&.fadeonview.off{
+			@include media_query($tb){
+	        	@include transform(translate(0, 0));
+	     	 }
+	      @include transform(translate(-80px, 0));
+		}
+	}
+
+	.centred_product_image{
+		@include trans_delay(0.4s);
+		display: block;
+		width: 100%;
+
+		img{
+			display: block;
+			background-image: none !important; //hide php background image
+			height: auto;
+		}
+
+		&.fadeonview.off{
+			@include media_query($tb){
+	        	@include transform(translate(0, 0));
+	     	 }
+	      @include transform(translate(0, 90px));
+		}
+	}
+
+	.title_wrap{
+		@include media_query($mb){
+			width: 100%;
+		}
+		display: table;
+		float: right;
+		width: 48%;
+		
+		.inner_wrap{
+			@include media_query($mb){
+				height: auto;
+			}
+			display: table-cell;
+			vertical-align: middle;
+			height: 500px;
+		}
+
+		.title{
+			@include media_query($tb){
+				margin-top: 0;
+			}
+			@extend %product-heading;
+			margin-top: 80px;
+			margin-bottom: 5px;
+
+			&.fadeonview.off{
+				@include media_query($tb){
+		        	@include transform(translate(0, 0));
+		     	 }
+		      @include transform(translate(80px, 0));
+			}
+		}
+
+		.subtitle{
+			@include media_query($tb){
+				font-size: ems(16px);
+				line-height: 26px;
+			}
+			@include media_query($mb){
+				font-size: ems(14px);
+			}
+			@include trans_delay(0.2s);
+			font-size: ems(22px);
+			line-height: 32px;
+			margin-bottom: 0;
+
+			&.fadeonview.off{
+				@include media_query($tb){
+		        	@include transform(translate(0, 0));
+		     	 }
+		      @include transform(translate(60px, 0));
+			}
+		}
+
+		&.centred_title_wrap{
+			display: block;
+			float: left;
+			width: 100%;
+
+			.inner_wrap{
+				display: block;
+				text-align: center;
+				height: auto;
+				margin-bottom: 30px;
+			}
+
+			.title{
+				@include media_query($tb){
+					margin-top: 0;
+				}
+				margin-top: 40px;
+
+				&.fadeonview.off{
+					@include media_query($tb){
+			        	@include transform(translate(0, 0));
+			     	 }
+			      @include transform(translate(0, 80px));
+				}
+			}
+
+			.subtitle{
+
+				&.fadeonview.off{
+					@include media_query($tb){
+			        	@include transform(translate(0, 0));
+			     	 }
+			      @include transform(translate(0, 60px));
+				}
+			}
+		}
+	}
+}
+
+
+//override nivo lightbox styling
+.nivo-lightbox-theme-default .nivo-lightbox-nav:hover{
+	background-color: transparent !important;
+}

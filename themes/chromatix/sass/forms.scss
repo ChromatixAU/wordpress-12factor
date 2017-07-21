@@ -1,0 +1,327 @@
+// ************************************** FORMS ************************************** //
+//General contact form styling
+// some classes may need to be preceeded by a relevant ID to override cf7 default styling
+
+// ************************ FIXES/ENHANCEMENTS TO CF7 DEFAULTS *********************** //
+
+	// hide the obnoxious tips that sit on top, we need to use !important because the form scripting would override
+
+		.chr_page .wpcf7-not-valid-tip { display: none !important; } 
+		
+	// fix an annoying control jumping problem on submit
+
+		.chr_page .wpcf7-form-control-wrap { height: auto !important; overflow: visible !important; }
+		
+	// fix the 100% width being lost on form elements because the wrapper was an inline-block
+
+		.chr_page .wpcf7-form-control-wrap { display: block !important; } 
+
+	// form success/failure output box
+
+		.chr_page .wpcf7-response-output {
+			margin: 0;
+			background-color: $darkbggrey;
+			color: $black;
+			position: absolute;
+			bottom: 40%;
+			font-weight: 300;
+			left: 5%;
+			width: 90%;
+			padding: 1.2em 1.5em;
+			@include borderbox;
+			font-size: ems(16px);
+			line-height: 1.6em;
+			text-align: center;
+			box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.3);
+			z-index: 50;
+			&.wpcf7-validation-errors { border-color: #FABB00; } // failure box only
+			&.wpcf7-mail-sent-ok { border-color: #6FCB12;  } // success box only
+		}
+		
+// ********************************** FORM STRUCTURE ********************************** //
+
+	// loader
+	
+		.chr_page .ajax-loader {
+			@include media_query($mb){
+				left: 0;
+				bottom: 10px;
+			}
+			@include animation(rotateForver 1s linear infinite); 
+			position: absolute; 
+			bottom: 2em; 
+			left: 48%; 
+			background-image: none !important;
+			background-color: $blue;
+		}
+		.chr_page #contact_popout .ajax-loader { }
+
+	// general
+		
+		.chr_page form {
+			
+			.wpcf7-not-valid{
+				border-color: $error;
+			}
+
+			input,
+			textarea,
+			select {
+				@include media_query($mb){
+					margin-bottom: 12px;
+				}
+				// border: 1px solid #dcdcdc;
+				padding: .3em .6em;
+				// font-family: $bodyfont; // change as per theme - note that IE9 & 10 may not listen to a @font-face font here, so best to include a backup
+				// font-size: ems(17px); // for mobile device forms, at least 17px prevents zooming on focus
+				// font-size: ems($bodysize); // as per theme
+				@include borderbox;
+				cursor: pointer;
+				margin-bottom: 20px;
+				
+				&:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]){
+					float: right;
+					height: 50px;
+					width: 100%;
+					@include inputreset; // disable fancy styling on iOS Safari
+					
+					&:hover,
+					&:focus { outline: none; outline-offset: 0; }
+					&:focus { 
+						&:not(select){ cursor: text; } 
+					}
+					//&:active { cursor: text; }
+				}
+				
+			}
+
+			button{
+					&:hover,
+					&:focus { outline: none; outline-offset: 0; }
+
+			}
+
+
+			textarea { height: auto !important; padding-top: .6em !important; resize: none; }
+
+			select,
+			input,
+			textarea{
+				@include transition(border-color 0.4s);
+				@include placeholder($bodycolor);
+				background-color: $white;
+				border: none;
+				border-radius: 0;
+				border: 1px solid #{$lines};
+				// padding-left: 1px;
+				color: $bodycolor;
+				font-family: $bodyfont; 
+				font-size: ems(14px);
+				
+
+				&:focus{
+					@include transition(border-color 0.4s);
+					@include placeholder($black);
+					border-color: $black;
+				}
+			}
+			
+			.wpcf7-submit{
+				@extend %button;
+				// margin-top: 15px;
+				float: left;
+				cursor: pointer;
+				appearance: none;
+				-webkit-appearance: none;
+			}
+
+		
+			&.wpcf7-form { @include clearfix; position: relative; }  // positioning parent
+			&.mc4wp-form { @include clearfix; }	
+			
+			p:nth-of-type(2) { margins-bottom: 0; } //Fix to remove bottom margin
+
+			p,
+			.form_col1,
+			.form_col2{
+				//margin: 1em 0;
+				@include clearfix;
+				&:nth-of-type(1) { margin: 0; height: 0; } // contains the hidden fields
+				&:nth-of-type(2) { margin-top: 0; } // the 'real' first paragraph
+				
+				// labels except for mobile devices
+				label {
+				
+					+ br { display: none; } // avoid the line breaks that cf7 adds for us
+					
+					// hide ALL the time
+					
+						span:first-child { display: none; }
+						
+					// OR, hide SOME of the time
+					
+						/*
+						@include mq(2,max){ span:first-child { display: none; } } // mobile devices
+						@include mq(2){ display: block; line-height: 2.6rem; @include clearfix; } // all other devices
+						
+						 // the label itself
+						span:first-child {
+							@include mq(2){ width: 35%; float: left; margin: .3em 0; }
+							@include mq(4){ width: 30%; }
+							@include mq(5){ width: 25%; }
+							@include mq($rsb){ width: 30%; } // sidebar is added here
+						}
+							
+						// the form elements
+						input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+						textarea, select {
+							@include mq(2){ width: 65%; float: right; @include placeholder(transparent); }
+							@include mq(4){ width: 70%; }
+							@include mq(5){ width: 75%; }
+							@include mq($rsb){ width: 70%; } // sidebar is added here
+						}
+						*/
+
+				} // label
+			} // p
+			
+		} // .chr_content form
+	
+// ********************************** FORM INPUTS ********************************** //
+		
+// 	input,
+// 	textarea,
+// 	select {
+// 		border: 1px solid #dcdcdc;
+// 		padding: .3em .6em;
+// 		font-family: $bodyfont; // change as per theme - note that IE9 & 10 may not listen to a @font-face font here, so best to include a backup
+// 		font-size: ems(14px); // for mobile device forms, at least 17px prevents zooming on focus
+// 		font-weight: 700;
+// 		//@include mq(5){ font-size: ems($bodysize); } // as per theme
+// 		@include borderbox;
+// 		cursor: pointer;
+// 		margin: 0;
+
+// 		&:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]){
+// 			//float: right;
+// 			//height: 2.5rem;
+// 			//width: 100%;
+// 			//@include inputreset; // disable fancy styling on iOS Safari
+			
+// 			&:hover,
+// 			&:focus { outline: 1px solid lighten(#0061b0,20); outline-offset: 0; }
+// 			&:focus { &:not(select){ cursor: text; } border-color: transparent; }
+// 			//&:active { cursor: text; }
+// 		}
+		
+// 	}
+
+// 		// while cf7 error or success messages are showing...
+// 		form.wpcf7-form { &.invalid, &.sent { input, textarea, select, label { opacity: .4; } } }
+
+// 		.chr_content form .wpcf7-list-item {
+// 			margin-left: 0;
+// 			label { cursor: pointer; line-height: 1.6em; }
+// 			input[type="checkbox"],
+// 			input[type="radio"] { margin: 0 .3em 0 0; /*position: relative; top: 1px;*/ vertical-align: middle; }
+// 		}
+		
+// 		textarea { height: auto !important; padding-top: .6em !important; resize: vertical; }
+		
+// 		select {
+// 			//background-image: url("../images/triangle_down.png");
+// 			//background-position: right center;
+// 			//background-position: right 10px center;
+// 			//background-repeat: no-repeat;
+// 			padding-left: 6px;
+// 			//-webkit-appearance: menulist; // restore default -webkit display for select elements - we don't need to if we haven't broken it
+// 			&.placeholder { color: #A9A9A9; option:not(.placeholder) { color: initial; } } // like a placeholder
+// 			//&.change { color: initial; } // class changed in JavaScript, works well with the placeholder-like colour above
+// 		}
+
+// // ************************************* BUTTONS ************************************* //
+		
+// 	input[type="submit"],
+// 	input[type="button"],
+// 	button,
+// 	a.button,
+// 	.buttons a,
+// 	a.button_link,
+// 	.button_links a {
+// 		// if you change this, copy the changes to ../editor-style.scss
+		
+// 		// adjust as per theme
+// 		width: auto;
+// 		color: #fff;
+// 		font-family: inherit;
+// 		font-size: ems(14px);
+// 		text-transform: uppercase;
+// 		border: 0;
+// 		//@include borderradius(0);
+		
+// 		-webkit-appearance: none;
+// 		cursor: pointer;
+// 		//opacity: .9;
+// 		//@include ie8opacity(90);
+// 		text-align: center;
+// 		//background-image: url("../images/arrow_right.png");
+// 		//background-repeat: no-repeat;
+// 		//background-position: center right;
+// 		//background-position: center right 15px;
+// 		text-decoration: none;
+// 		position: relative; // relative position is required for :active push button effect
+// 		height: 2.5rem;
+// 		line-height: 2.6rem;
+// 		padding: 0 1.8em 0 1.8em; // adjust right padding if you have a right arrow
+// 		margin: 0;
+// 		display: inline-block;
+// 		outline: 0;
+// 		//@include trans;
+// 		//@include noselect;
+// 		overflow: hidden;
+// 		//img { vertical-align: middle; }
+		
+// 	/* 	@include mq($rhb){
+// 		&:hover {
+// 			background-color: $secondary; // adjust as per theme
+// 			color: #fff; // adjust as per theme
+// 			text-decoration: none !important;
+// 		}
+// 	} */
+		
+// 		&.big_button {
+// 			display: block;
+// 			font-size: ems(20px);
+// 			font-family: $bodyfont_bold;
+// 			height: auto;
+// 			line-height: 1.2em;
+// 			padding: 1.2em 1.5em;
+// 			margin: 1em 0;
+// 			text-align: left;
+// 			img { vertical-align: middle; margin: .1em; }
+// 		}
+		
+// 		&:active, .active { top: 1px;} // push button effect
+		
+// 	} // buttons (in their various forms)
+	
+// 	a.button, .buttons a, a.button_link, .button_links a { } // specific to anchors only and not inputs
+// 	input[type="submit"], input[type="button"], button {  } // specific to inputs/buttons only and not anchors
+
+// 	.wpcf7-form p.submit{ float: right; margin: 0; }
+	
+// 	.wpcf7-submit { float: right; margin-top: 1em; padding-right: 3em; }
+
+// 	// spacing when in a collection
+// 	.button_links,
+// 	.buttons {
+// 		margin-left: -5px;
+// 		margin-right: -5px;
+// 		a {
+// 			margin: 5px;
+// 			//&:first-child { margin-left: 0; }
+// 			//&:last-child { margin-right: 0; }
+// 		}
+// 	}
+
+// ************************** The end, thanks for visiting! ************************** //

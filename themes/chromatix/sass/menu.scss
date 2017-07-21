@@ -1,0 +1,533 @@
+//Animation of hover states
+$menu_duration: 0.4s;
+
+//Main header style
+.mashead-bottom{
+    position: relative;
+}
+
+.masthead .header_menu{
+    @include borderbox;
+    text-align: right;
+
+    //Menu/Nav
+    .access .menu{
+        float: right;
+        padding-top: 50px;
+        list-style: none;
+
+        > li{
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            margin-right: 45px;
+            line-height: 14px;
+
+            > a{
+                display: inline-block;
+                font-family: $bodyfont;
+                text-transform: uppercase;
+                text-decoration: none;
+                color: $bodycolor;
+                font-size: ems(14px);
+                letter-spacing: 1px;
+                font-weight: 400;
+                position: relative;
+                z-index: 15;
+                padding-bottom: 7px;
+
+                .home &{
+                    .menu_icon > svg{
+                        fill: $bodycolor;
+                    }
+                }
+                
+                &:before{
+                    @include media_query($tb){
+                        display: none;
+                        content: none;
+                    }
+                    // @include vendor(transform-origin, (0 50%));
+                    @include transition(transform #{$menu_duration});
+                    @include transform(scaleX(0));
+                    display: block;
+                    content: '';
+                    width: calc(100%);
+                    height: 1px;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    z-index: -1;
+                    background-color: $blue;
+                }
+
+               
+                &:hover{
+                    text-decoration: none;
+                    
+                    &:before{
+                        @include transition(transform #{$menu_duration});
+                        @include transform(scaleX(1));
+                    }
+                    
+                }
+            }
+
+            &:last-of-type{
+                margin-right: 0;
+            }                                                                                                   
+        }
+
+        .homepage{
+            position: relative; 
+            $hicon: 16px; //home icon size
+            .menu_icon{
+                width: $hicon;
+                height: $hicon;
+
+                > svg{
+                    @include transition(fill #{$menu_duration});
+                    width: $hicon;
+                    height: $hicon;
+                    fill: $bodycolor;
+                }
+            }
+
+            //Remove text
+            .link{
+                display: none;
+            }
+
+            > a{
+                top: 2px;
+                padding-bottom: 0;
+
+                &:hover .menu_icon > svg{
+                    @include transition(fill #{$menu_duration});
+                    fill: $blue;
+                }
+
+                //Remove hover line
+                &:before{
+                    display: none;
+                    content: none;
+                }
+            }
+        }    
+
+
+        > li.current-menu-item,
+        > li.current-page-ancestor{
+
+            .sub-menu .current-menu-item > a{
+                color: $blue;
+            }
+            
+            > a{
+                &:before{
+                    @include transform(scaleX(1));
+                }
+
+                .menu_icon > svg{
+                    fill: $blue;
+                }
+            }
+        }
+    }
+}
+
+//Mega Menu Styling
+#megamenu_lightbox{
+    display: none;
+    z-index: 60;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $black;
+    opacity: 0.5;
+    will-change: transform;
+}
+
+//Secondary Dropdown Styling
+.header_menu .disable.menu-item-has-children:not(.megamenu){
+    position: relative;
+
+    .dropdown_container{
+        display: none;
+        width: 250px;
+        padding: 30px;
+        padding-top: 40px;
+        box-sizing: border-box;
+        position: absolute;
+        top: 40px;
+        left: -30px;
+        background-color: $white;
+
+        .mobile_head{
+            display: none;
+        }
+
+        .sub-menu li{
+            display: block;
+            width: 100%;
+            margin-bottom: 30px;
+            text-align: left;
+
+            > a{
+                @include transition(color #{$menu_duration});
+               display: inline-block;
+                font-family: $bodyfont;
+                text-transform: uppercase;
+                text-decoration: none;
+                color: $bodycolor;
+                font-size: ems(14px);
+                letter-spacing: 1px;
+                font-weight: 400;
+                position: relative;
+
+                &:hover{
+                    @include transition(color #{$menu_duration});
+                    text-decoration: none;
+                    color: $blue;
+                }
+            }
+            
+            &:last-of-type{
+                margin-bottom: 0;
+            }
+
+        }
+    }
+
+    &:hover{
+
+         &:after{
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 45px;
+            content: '';
+            bottom: -42px;
+        }
+
+        > a:before{
+            @include transform(scaleX(1));
+        }
+
+        .dropdown_container{
+            @include media_query($tb){
+                @include animation(none);
+            }
+            @include animation(fader #{$menu_duration});
+            display: block;
+            
+        }
+    }
+}
+
+
+//========= Mobile Menu Styling ==============
+.mobile-menu-open{
+
+    #masthead .masthead-bottom{
+        // @include animation(fader 0.5s ease-in);
+        @include transform(translateX(0) !important); 
+        @include transition(transform 0.4s);
+        z-index: 50;
+    }
+
+    #megamenu_lightbox{
+        display: block;
+    }
+
+    
+    //Stop flickering if search is/isnt open
+    &:not(.respo-search-open) #megamenu_lightbox{
+        @include animation(fadeLightbox 0.4s);
+    }
+}
+
+
+
+//Hamburger
+#mobile-toggle-wrap{
+    @include media_query($tb){
+        display: inline-block;
+    }
+    @include media_query($mb){
+        top: 12px;
+        padding-bottom: 15px;
+    }
+    display: none;
+    @include transform(scale(0.8));
+    @include vendor(transform-origin, 100% 50%);
+    float: right;
+    position: relative;
+    top: 19px;
+    background-color: transparent;
+    padding-bottom: 20px;
+    padding-right: 0;
+    z-index: 10;
+    outline: none !important; //override chrome button styling
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    
+    &:hover{
+        opacity: 1; //override default behaviour
+    }
+
+    //Actual burger lines
+    .hamburger-inner, 
+    .hamburger-inner:after, 
+    .hamburger-inner:before{
+        width: 34px;
+        height: 2px;
+        border-radius: 0;
+        background-color: $primary;
+    }
+
+    .hamburger-label{
+        display: none;
+    }
+}
+
+//The responsive menu wrapper
+#masthead .masthead-bottom{
+    @include media_query($tb){
+        @include transition(transform 0.4s);
+        @include transform(translateX(325px) !important);    
+        width: 280px;
+        float: right;
+        height: 100vh;
+        background-color: $darkbggrey;
+        overflow-x: hidden;
+        overflow-y: auto;
+        z-index: 100;
+        position: relative;
+        top: 1px;
+    }
+}
+
+
+//There is a lot of overriding here for responsive
+$tabmenu-h: 40px;
+#masthead .header_menu{
+    @include media_query($tb)
+    {
+        display: block;
+        position: relative;
+        padding: 0 !important;
+        width: 100%;
+        height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+       .menu{
+            position: relative;
+            display: block;
+            float: none; 
+            padding-top: 25px;
+
+            > li{
+                @include borderbox;
+                display: block;
+                width: 100%;
+                padding-left: 30px;
+                text-align: left;
+                margin: 0;
+
+                &:before{
+                    display: none;
+                    content: none;
+                }
+
+                > a{
+                    display: block;
+                    padding: 0;
+                    height: $tabmenu-h;
+                    border: 0;
+                    color: $secondary;
+                    font-size: ems(14px);
+                    line-height: $tabmenu-h;
+                    -webkit-tap-highlight-color: rgba(0,0,0,0);
+                    
+                    &:after{
+                        display: none;
+                        content: none;
+                    }
+                }
+            }
+
+            //Link to page 2
+            > li.menu-item-has-children{
+                @include borderbox;
+                display: block;
+                padding: 0;
+                padding-left: 30px;
+                margin: 0;
+                position: initial;
+                
+                > a{
+                    position: relative;
+                }
+
+                > a:after{
+                    display: inline-block;
+                    width: 15px;
+                    height: $tabmenu-h - 2;
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: initial;
+                    bottom: inital;
+                    right: 85px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: contain;
+                    background-image: url('../images/icons/arrow.svg');
+                }
+
+                //Display 2nd level menu on click
+                .sub-menu{
+                    @include animation(none);
+                    display: block;
+                    padding: 0;
+                    // padding-top: 10px;
+                    position: relative;
+                    top: $tabmenu-h;
+                    text-align: center;
+                    left: inherit;
+
+                    &:after{
+                        display: none;
+                        content: none;
+                    }
+
+                   //Page 2 title/heading items
+                   > li{
+                        @include borderbox;
+                        float: none;
+                        display: block;
+                        width: 100%;
+                        padding-left: 42px;
+                        text-align: left;
+                        margin: 0;
+                        position: relative;
+
+                        &:before{
+                            display: none;
+                            content: none;
+                        }
+
+                        > a{
+                            display: block;
+                            padding: 0;
+                            margin: 0;
+                            width: 100%;
+                            height: $tabmenu-h;
+                            border: 0;
+                            color: $secondary;
+                            font-size: ems(14px);
+                            line-height: $tabmenu-h;
+                            -webkit-tap-highlight-color: rgba(0,0,0,0);
+                        }
+
+
+                        &.current-menu-item > a{
+                            color: $blue;
+                        }
+                    }
+                }
+
+                .megamenu_container,
+                .dropdown_container{
+                    @include transition(transform 0.4s);
+                    @include transform(translateX(340px));
+                    @include borderbox;
+                    @include clearfix;
+                    width: 100%;
+                    height: calc(100vh - 86px);
+                    display: block !important;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 100;
+                    margin: 0;
+                    padding: 0;
+                    padding-top: 30px;
+                    box-shadow: none;
+                    border: none;
+                    background-color: $darkbggrey;
+
+                    //Services heading
+                    .mobile_head{
+                        display: block;
+                        width: 100%;
+                        padding: 0;
+                        margin: 0;
+                        height: $tabmenu-h;
+                        line-height: $tabmenu-h;
+                        position: absolute;
+                        top: 30px;
+                        pointer-events: auto; //required for responsive
+
+                        .wrap{
+                            @include borderbox;
+                            width: 100%;
+                            height: $tabmenu-h;
+                            display: block;
+                            line-height: $tabmenu-h;
+                            position: relative;
+                            color: $blue;
+                            font-size: ems(18px);
+                            padding-left: 42px;
+
+                            .heading{
+                                position: relative;
+                                font-family: $bodyfont;
+                                text-transform: uppercase;
+                                font-weight: 400;
+                                font-size: ems(20px);
+                                color: $blue;
+
+                                &:after{
+                                   display: none;
+                                   content: none;
+                                }
+                            }
+                        }
+
+                        //Previous Arrow
+                        .prev{
+                            @include transform(rotate(180deg));
+                            display: inline-block;
+                            position: absolute;
+                            top: 1px;
+                            left: 15px;
+                            width: 13px;
+                            height: $tabmenu-h - 2;
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background-size: contain;
+                            background-image: url('../images/icons/arrow.svg');
+                        }
+                    }
+                }
+            }
+
+            //Further Overides
+            >li.current-menu-item > a,
+            >li.current-menu-ancestor > a{
+                color: $blue;
+            }
+        }
+    }
+}
+
+//Page 2 opened
+.megamobile #masthead .header_menu .menu li.menu-item-has-children.open .megamenu_container,
+.megamobile #masthead .header_menu .menu li.menu-item-has-children.open .dropdown_container{
+    @include transition(transform 0.4s);
+    @include transform(translateX(0));
+}

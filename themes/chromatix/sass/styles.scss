@@ -1,0 +1,25 @@
+/*
+Theme Name: playground
+Author: David James <david.james@chromatix.com.au>
+Author URI: http://chromatix.com.au
+Description: A Chromatix theme
+Version: 1.0.1
+License: GNU General Public License v3 with Creative Commons proxy + exceptions for some separatable files
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Text Domain: chromatix.com.au
+*/
+
+@import "master"; // import variables & mixins - sass/_master.scss is where you set the variables for the site
+	@import "setup"; // CSS reset, page structure, etc
+	@import "header"; // styling for header
+	@import "menu";
+	@import "hamburger";
+	@import "frontpage"; // front page styling
+	@import "category-page";
+	@import "contact-page";
+	@import "product";
+	@import "page"; // subpage styling
+	@import "forms";
+	@import "slick";
+	@import "footer"; // styling for header
+	

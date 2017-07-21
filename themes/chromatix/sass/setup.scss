@@ -1,0 +1,166 @@
+
+// **************************** INIT **************************** //
+
+// Reset code
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, figure, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	border: 0; font-family: inherit; font-size: 100%; font-style: inherit; font-weight: inherit; margin: 0; outline: 0; padding: 0; vertical-align: baseline;
+}
+
+// css to skip for search engines
+.assistive-text { position: absolute !important; clip: rect(1px 1px 1px 1px); /* IE6, IE7 */ clip: rect(1px, 1px, 1px, 1px); }
+#access a.assistive-text:active, #access a.assistive-text:focus {
+	background: #eee; border-bottom: 1px solid #ddd; color: #809a04; clip: auto !important;
+	font-size: 12px; position: absolute; text-decoration: underline; top: 0; left: 7.6%;
+}
+
+a img { border: 0; } // IE fix. Make images that are links not have obnoxious blue borders
+li { list-style-type: none; } // We'll turn 'em on if we need 'em
+.clear { clear: both; }
+.disable > a, a.disable, .disabled > a, a.disabled { cursor: default !important; text-decoration: none !important; }
+.nomargin { margin: 0 !important; }
+.nocaps { text-transform: none !important; }
+.clickable { cursor: pointer; }
+.close { position: absolute; top: 10px; right: 10px; z-index: 1100; width: 32px; height: 32px; 	background-image: url("../images/icons/close2_black.png"); background-size: 32px; background-repeat: no-repeat; opacity: 1; @include ie8opacity(100); cursor: pointer; }
+	.close:hover { opacity: .6; @include ie8opacity(60); }
+.clearfix { @include clearfix(); }
+.hide_till_loaded { display: none; }
+.hide_when_loaded { }
+.topoffset { position: relative; top: -25px; }
+.rightoffset { position: relative; right: -25px; }
+.bottomoffset { position: relative; bottom: -25px; }
+.leftoffset { position: relative; left: -25px; }
+a.opacity_hover { opacity: .8; @include transition(opacity .5s); }
+	a.opacity_hover:hover { opacity: 1; }
+
+.imagebg { @include imagebg(); }
+.trans { @include trans; }
+.fadeonview { @include trans; opacity: 1; position: relative; @include transform(translate(0,0)); }
+	.fadeonview.off { @include untrans; opacity: 0; @include transform(translate(20px,0)); }
+	
+	// disable fadeonview for touch devices, due to issues with momentum scroll not showing it, and not showing at all on old iPad
+	@include media_query($tb){
+		.fadeonview,
+	    .fadeonview.off {@include ie8opacity(100); @include untrans; opacity: 1; @include transform(translate(0, 0)); }
+
+	}
+	
+.social_icons { }
+	.social_icons a img { opacity: .8; @include ie8opacity(80); }
+		.social_icons a:hover img { opacity: 1; @include ie8opacity(100); }
+	
+.loading {
+	background-image: url("../images/loading.gif");
+	background-size: 60px; background-repeat: no-repeat;
+	min-width: 60px; min-height: 60px;
+}
+	
+.lb-next, .lb-prev { background-color: rgba(255,255,255,0); } // gallery lightbox fix for next/prev buttons in IE
+
+.noselect {
+	// stops user from selecting text, for example when clicks are handled in a web app
+	-webkit-user-select: none; // webkit (safari, chrome) browsers
+	-moz-user-select: none; // mozilla browsers
+	-khtml-user-select: none; // webkit (konqueror) browsers
+	-ms-user-select: none; // IE10+
+}
+
+// selected text colour to match theme
+*::selection { background: lighten($primary,50); color: $bodytext; }
+*::-moz-selection { background: lighten($primary,50); color: $bodytext; }
+
+.w-100 { float: left; width: 100%; }
+.w-90 { float: left; width: 90%; } .w-80 { float: left; width: 80%; } .w-70 { float: left; width: 70%; }
+.w-60 { float: left; width: 60%; } .w-50 { float: left; width: 50%; } .w-40 { float: left; width: 40%; }
+.w-30 { float: left; width: 30%; } .w-20 { float: left; width: 20%; } .w-10 { float: left; width: 10%; }
+
+.w-95 { float: left; width: 95%; } .w-85 { float: left; width: 85%; } .w-75 { float: left; width: 75%; }
+.w-65 { float: left; width: 65%; } .w-55 { float: left; width: 55%; } .w-45 { float: left; width: 45%; }
+.w-35 { float: left; width: 35%; } .w-25 { float: left; width: 25%; } .w-15 { float: left; width: 15%; }
+.w-5 { float: left; width: 5%; }
+
+// global jcarousel styles
+
+	.jcarousel { overflow: hidden; }
+
+		.jcarousel ul {
+			position: relative;
+			width: 20000em;
+			height: 100%;
+			list-style-type: none !important;
+			// margin: 0 !important;
+			// padding: 0 !important;
+		}
+		
+			.jcarousel ul li {
+				float: left;
+				height: 100%;
+				list-style-type: none !important;
+				//margin: 0 !important;
+				//padding: 0 !important;
+			}
+
+// ************************** STRUCTURE ************************** //
+
+html, body, .chr_page {
+	width: 100%;
+	// see editor-style-shared.css for font-family and font-size
+	-webkit-text-size-adjust: none; // to stop iPhone Safari from changing text sizes on us
+	max-height: 999999999999999999999999em; // to stop Android Chrome from changing text sizes on us, HT http://stackoverflow.com/a/15137584/1982136
+	position: relative;
+	background-color: $truewhite;
+}
+
+	// horizontal scroll fixes:
+	// - Mac Books require overflow-x hidden on html AND body to avoid trackpad scroll
+	// - Windows Chrome requires a full overflow hidden on body to avoid additional scrollbars
+	html { overflow-x: hidden; }
+	body { overflow: hidden; }
+	
+	// may need to be hidden if page_containers or fullwidth_containers are used
+	//.chr_page { overflow-x: hidden; }
+		// when pushed over for responsive menu
+		.chr_page.push { @include transform(translate(50%,0)); opacity: .5; }
+		
+		
+// *********************** OLD IE ********************** //
+
+// to deal with old IE, we'll hide anything that doesn't look quite right and show a message
+
+.oldie {
+
+	.chr_page { padding-top: 100px; }
+	.chr_page:before {
+		content: "It looks like you're using an unsupported browser. While you can view this site, the experience will not be the same as with a newer browser. To experience the latest of what the web has to offer - and keep your browsing secure - we recommend downloading the latest version of Chrome or Firefox.";
+		background-color: #F9D5AC;
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 96%;
+		z-index: 100;
+		height: 60px;
+		padding: 2%;
+	}
+
+	//.megamenu_wrapper,
+	.megamenu_lightbox,
+	.contact_popout_wrapper,
+	.greyscale-image-img,
+	svg,
+	img[src$=".svg"],
+	.greyscale-image-link { display: none !important; }
+
+	li.disabled.megamenu a { cursor: pointer !important; }
+
+	img.imagebg,
+	.pdf_icon,
+	.email_icon,
+	.phone_icon { background-image: none !important; padding-left: 0 !important; }
+
+		img.imagebg { box-sizing: content-box !important; margin-left: auto; margin-right: auto; width: auto; }
+	
+}
+
+// ***************** The end, thanks for visiting! **************** //

@@ -11,18 +11,6 @@
     {
       "type": "path",
       "url": "themes/*/"
-    },
-    {
-      "type": "package",
-      "package": {
-        "name": "chromatixau/advanced-custom-fields-pro",
-        "version": "1.0",
-        "source": {
-          "url": "https://github.com/ChromatixAU/advanced-custom-fields-pro.git",
-          "type": "git",
-          "reference": "origin/master"
-        }
-      }
     }
   ],
   "extra": {
@@ -48,8 +36,8 @@
     "wp-cli/wp-cli": "^1.1.0",
     "wpackagist-theme/twentyfifteen": "*",
     "dzuelke/twentyfifteen-child": "*",
-    "wpackagist-plugin/advanced-custom-fields": "^4.4",
-    "chromatixau/advanced-custom-fields-pro": "*"
+    "chromatixau/chromatix": "*",
+    "wpackagist-plugin/advanced-custom-fields": "^4.4"
   },
   "scripts": {
     "wordpress-setup-core-install-prompt": "wp core install --prompt",

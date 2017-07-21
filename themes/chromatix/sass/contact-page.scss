@@ -1,0 +1,51 @@
+.contact_page{
+
+	.two_column{
+
+		.content_container{
+			padding-bottom: 0;
+
+			img{
+				@include media_query($tb){
+					display: inline-block;
+					margin-top: 10px;
+					margin-bottom: 40px;
+				}
+				@include media_query($mb){
+					margin-top: 0;
+					margin-bottom: 30px;
+				}
+				display: block;
+			}
+
+			p:last-of-type{
+				margin-bottom: 0;
+			}
+
+			//Form styling
+			.wpcf7{
+				margin-top: 15px;
+
+				.wpcf7-submit{
+					@include media_query($tb){
+						display: inline-block;
+						float: none;
+						margin-bottom: 40px;
+					}
+				}
+			}
+
+			.ajax-loader{
+				@include media_query($tb){
+					bottom: 48px;
+					left: 0;
+				}
+				bottom: 5px;
+			}
+		}
+	}
+}
+
+.page-template-template-contact .newsletter_section{
+	display: none;
+}

@@ -1,0 +1,381 @@
+.front_page{
+
+	.hero_section{
+		@include media_query($tb){
+			padding-top: 90px;
+		}
+		@include media_query($mb){
+			padding-top: 80px;
+		}
+		display: block;
+		width: 100%;
+		padding-top: 120px;
+		background-color: $hero-box;
+	}
+
+	$slide-h: 635px;
+	$slide-tb: 720px;
+	$slide-mb: 570px;
+	.hero_slider{
+
+		.hero_slide{
+			@include media_query($tb){
+				height: $slide-tb;
+			}
+			@include media_query($mb){
+				height: $slide-mb;
+			}
+			width: 100%;
+			height: $slide-h;
+
+			.slide_content{
+				border: none;
+				position: relative;
+			}
+			
+			.content_wrap{
+				@include media_query($small){
+					padding-left: 30px;
+					box-sizing: border-box;
+				}
+				@include media_query($tb){
+					float: none;
+					width: 100%;
+					padding-left: 0;
+					padding-top: 450px;
+					position: relative;
+					text-align: center;
+					z-index: 30;
+				}
+				@include media_query($mb){
+					padding-top: 340px;
+				}
+				float: right;
+				width: 40%;
+				display: table;
+				
+				.inner_wrap{
+					@include media_query($tb){
+						display: block;
+						height: auto;
+					}
+					display: table-cell;
+					height: $slide-h;
+					vertical-align: middle;
+				}
+
+				//Override H2 + H3 styles for this section
+
+				//The main black heading
+				h2{
+					@include media_query($small){
+						font-size: ems(60px);
+						line-height: 64px;
+					}
+					@include media_query($tb){
+						font-size: ems(46px);
+						line-height: 56px;
+					}
+					@include media_query($mb){
+						font-size: ems(30px);
+						line-height: 38px;
+						margin-bottom: 8px;
+					}
+					font-size: ems(66px);
+					line-height: 70px;
+					font-weight: 700;
+					color: $hero-title;
+					margin-bottom: 15px;
+				}
+
+				// The red subtitle
+				h3{
+					@include media_query($tb){
+						font-size: ems(16px);
+					}
+					@include media_query($mb){
+						font-size: ems(14px);
+						margin-bottom: 15px;
+					}
+					font-weight: 400;
+					font-size: ems(18px);
+					line-height: 28px;
+					margin-bottom: 25px;
+					color: $hero-subtitle;
+				}
+
+				p:last-of-type{
+					margin-bottom: 0;
+				}
+			}
+
+			.main_image{
+				@include media_query($tb){
+					display: none;
+				}
+				@extend %bg-image;
+				background-size: contain;
+				width: 576px;
+				height: 580px;
+				position: absolute;
+				top: 100px;
+				left: 120px;
+				z-index: 10;
+			}
+
+			.respo_main_image{
+				@include media_query($tb){
+					display: block;
+					background-size: contain;
+					width: 470px;
+					height: 380px;
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					margin-left: auto;
+					margin-right: auto;
+					z-index: 10;
+				}
+				@include media_query($mb){
+					width: 320px;
+					height: 290px;
+				}
+				@extend %bg-image;
+				display: none;
+			}
+
+		
+			$bg-image-tb: 320px;
+			$bg-image-mb: 235px;
+			.bg_image{
+				@include media_query(2000px){
+					width: 900px;
+					left: -370px;
+				}
+				@include media_query($tb){
+					width: 100%;
+					position: absolute;
+					left: 0;
+					height: $bg-image-tb + 20;
+				}
+				@include media_query($mb){
+					height: $bg-image-mb + 20;
+				}
+				@extend %bg-image;
+			    width: 1200px;
+				height: $slide-h + 20;
+				position: absolute;
+				top: -20px;
+			    left: -670px;
+				z-index: 5;
+			}
+		}
+
+		.slick-list{
+			overflow: visible;
+		}
+
+		.slick-dots{
+			@include media_query($small){
+				padding-left: 739px;
+			}
+			@include media_query($tb){
+				width: 100%;
+				padding-left: 0;
+				text-align: center;
+				bottom: 315px;
+			}
+			@include media_query($mb){
+				bottom: 280px;
+			}
+			width: 1200px;
+			height: 0;
+			position: relative;
+			left: 0;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: left;
+			padding-left: 712px;
+			box-sizing: border-box;
+			bottom: 95px;
+
+			li{
+				margin: 0 10px;
+				
+				&:before{
+					@include media_query($tb){
+						width: 10px;
+						height: 10px;
+					}
+					@include transform(rotate(0));
+					border: 1px solid #{$slider-dot};
+					background-color: transparent;
+				}
+
+				&.slick-active:before{
+					background-color: $slider-dot;
+				}
+			}
+		}
+
+	}
+
+	.first_section{
+
+		.first_content{
+			@include media_query($tb){
+				padding-top: 40px;
+				padding-bottom: 35px;
+			}
+			@include media_query($mb){
+				padding-top: 30px;
+				padding-bottom: 30px;
+			}
+			padding-top: 105px; //make room for watch overlay
+			padding-bottom: 55px;
+		
+		}
+
+		.initial_content{
+			@include media_query($tb){
+				max-width: 100%;
+			}
+			text-align: center;
+			max-width: 80%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	
+		$two-col-break: 600px;
+		.left_content{
+			@include media_query($two-col-break){
+				width: 100%;
+			}
+			display: block;
+			float: left;
+			width: 48%;
+
+			&.fadeonview.off{
+				@include media_query($tb){
+		        	@include transform(translate(0, 0));
+		     	 }
+		      @include transform(translate(-80px, 0));
+			}
+		}
+
+		.right_content{
+			@include media_query($two-col-break){
+				width: 100%;
+			}
+			float: right;
+			width: 48%;
+
+			&.fadeonview.off{
+				@include media_query($tb){
+		        	@include transform(translate(0, 0));
+		     	 }
+		      @include transform(translate(80px, 0));
+			}
+		}
+
+	}
+
+
+	.categories_section{
+
+		.featured_heading{
+			@include media_query($tb){
+				padding-top: 45px;
+				padding-bottom: 20px;
+				text-align: center;
+			}
+			@include media_query($mb){
+				padding-top: 25px;
+				padding-bottom: 15px;
+			}
+			padding-top: 68px;
+			padding-bottom: 40px;
+		}
+		
+		// NOTE: See category-page.scss for styling shared between the
+		//two pages
+	
+		.button_wrap{
+			text-align: center;
+			width: 100%;
+		}
+
+	}
+
+	.clients_section{
+		
+		.clients_content{
+			@include media_query($tb){
+				padding-top: 50px;
+				padding-bottom: 50px;
+				text-align: center;
+			}
+			@include media_query($mb){
+				padding-top: 30px;
+				padding-bottom: 45px;
+			}
+			padding-top: 70px;
+			padding-bottom: 140px;
+
+			.clients_heading{
+				@include media_query($mb){
+					margin-bottom: 25px;
+				}
+				margin-bottom: 35px;
+			}
+		}
+
+
+		.clients_wrap{
+			@include media_query($tb){
+				margin-top: 30px;
+			}
+			@include media_query($mb){
+				margin-top: 15px;
+			}
+			margin-top: 60px;
+			
+			.client_item a{
+				display: inline-block;
+			}
+
+			.client_image{
+				@include media_query($tb){
+					width: 155px;
+					height: 70px;
+				}
+				@extend %bg-image;
+				display: inline-block;
+				width: 170px;
+				height: 85px;
+				background-size: contain;
+
+			}
+		}
+
+		//swipey
+		$swipe-size: 30px;
+		.swipey{
+			@include media_query($tb){
+				@include animation(swiper 3s ease-in-out infinite);
+				display: block;
+			}
+			@extend %bg-image;
+			display: none;
+			content: '';
+			width: $swipe-size;
+			height: $swipe-size;
+			margin: 0 auto;
+			margin-top: 30px;
+			background-size: contain;
+			background-image: url('../images/icons/swipe.svg');
+		}
+
+	}
+}

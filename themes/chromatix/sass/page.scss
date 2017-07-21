@@ -1,0 +1,456 @@
+//Generic Page Styling
+.item.page{
+
+	.page_header{
+		border-bottom: 1px solid #{$lines};
+	}
+
+	.inner_header{
+		@include media_query($tb){
+			padding-top: 140px;
+			padding-bottom: 50px;
+		}
+		@include media_query($mb){
+			padding-top: 110px;
+			padding-bottom: 30px;
+		}
+		padding-top: 180px;
+		padding-bottom: 60px;
+		border-left: 1px solid #{$lines};
+		border-right: 1px solid #{$lines};
+		text-align: center;
+
+		.page_title{
+			&.fadeonview.off{
+				@include media_query($tb){
+		        	@include transform(translate(0, 0));
+		     	 }
+		      @include transform(translate(0, 50px));
+			}
+		}
+	}
+
+}
+
+
+//Flexible content sections
+.flexible_main{
+	
+	.content_container{
+		@include media_query($tb){
+			padding-top: 50px;
+			padding-bottom: 50px;
+			text-align: center;
+
+			ul li{
+				text-align: left;
+			}
+		}
+		@include media_query($mb){
+			padding-top: 30px;
+			padding-bottom: 30px;
+		}
+		padding-top: 75px;
+		padding-bottom: 75px;
+	}
+
+	.quote_content{
+		background-color: $white;
+
+		.content_container{
+			border: none;
+			text-align: center;
+			
+			p:last-of-type{
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.two_column{
+		.col_one{
+			@include media_query($tb){
+				width: 100%;
+			}
+			float: left;
+			width: 48%;
+		}
+
+		.col_two{
+			@include media_query($tb){
+				width: 100%;
+			}
+			float: right;
+			width: 48%;
+		}
+	}
+
+	//Special L | R Image
+	.content_left_image{
+		position: relative;
+
+		.left_image{
+			@include media_query($tb){
+				width: 100%;
+				margin-top: 15px;
+			}
+			float: left;
+			width: 40%;
+			margin-top: 5px;
+
+			img{
+				background-image: none !important; //remove from inline style
+			}
+		}
+
+		.right_content{
+			@include media_query($tb){
+				width: 100%;
+			}
+			float: right;
+			width: 55%;
+		}
+	}
+
+	.content_right_image{
+		position: relative;
+
+		.left_content{
+			@include media_query($tb){
+				width: 100%;
+			}
+			float: left;
+			width: 55%;
+		}
+
+		.right_image{
+			@include media_query($tb){
+				width: 100%;
+				margin-top: 15px;
+			}
+			float: right;
+			width: 40%;
+			margin-top: 5px;
+
+			img{
+				background-image: none !important; //remove from inline style
+			}
+		}
+	}
+
+	$full-image-break: $small;
+	$respo-image-start: 1024px;
+	.content_full_image{
+		position: relative;
+		text-align: center;
+		
+		.content_container{
+			@include media_query($full-image-break){
+				padding-bottom: 0 !important; //override php inline padding
+			}
+		}
+
+		.full_image_replace_wrap{
+			@include media_query($respo-image-start){
+				display: block;
+			}
+			@include media_query($mb){
+				padding-top: 20px;
+				padding-bottom: 20px;
+			}
+			display: none;
+			width: 100%;
+			position: relative;
+			padding-top: 40px;
+			padding-bottom: 40px;
+
+			img{
+				background-image: none !important; //hide php background image
+			}
+		}
+		
+		.full_image_wrap{
+			@include media_query($full-image-break){
+				position: relative;
+				bottom: 0;
+				padding-top: 40px;
+				padding-bottom: 50px;
+			}
+			@include media_query($respo-image-start){
+				display: none;
+			}
+			display: block;
+			width: 100%;
+			position: absolute;
+			bottom: 40px;
+
+			img{
+				background-image: none !important; //hide php background image
+			}
+		}
+	}
+
+	.three_col_feature{
+		text-align: center;
+		
+		.top_content{
+			margin-bottom: 15px;
+		}
+
+		.column_wrap{
+			@include media_query($mb){
+				width: 100%;
+			}
+			position: relative;
+			width: 950px;
+			margin: 0 auto;
+			max-width: 100%;
+			text-decoration: none;
+			
+			.col_item{
+				@include media_query($mb){
+					width: 100%;
+				}
+				display: block;
+				width: 30%;
+				float: left;
+				text-align: center;
+				margin-top: 25px;
+				
+				.thumb_img{
+					display: block;
+					@extend %bg-image;
+					background-size: contain;
+					background-position: center bottom;
+					width: 100%;
+					height: 200px;
+					margin-bottom: 20px;
+				}
+
+				.col_title{
+					@include media_query($tb){
+						font-size: ems(13px);
+					}
+					@include transition(color 0.4s);
+					font-size: ems(16px);
+					line-height: 18px;
+					margin-bottom: 10px;
+				}
+
+				.description{
+					font-size: ems(14px);
+					line-height: 24px;
+					color: $bodycolor;
+				}
+
+				&:nth-child(3n + 2){
+					@include media_query($mb){
+						margin-left: 0;
+						margin-right: 0
+					}
+					margin-left: 5%;
+					margin-right: 5%;
+				}
+
+				&:nth-child(3n + 1){
+					@include media_query($mb){
+						clear: both;
+					}
+					clear: left;
+				}
+				
+				.main_image{
+					display: block;
+					
+					&:hover{
+						text-decoration: none;
+						
+						.title{
+							@include transition(color 0.4s);
+							color: $pink;
+						}	
+				
+					}
+				}
+
+				.hidden_image{
+					display: none;
+				}
+			}
+			
+		}
+
+	}
+	
+	.bg_section{
+		@include media_query($tb){
+			height: 450px;
+		}
+		@include media_query($mb){
+			height: 270px;
+		}
+		width: 100%;
+		height: 700px;
+		position: relative;
+
+		.background{
+			@extend %bg-image;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+
+		}
+		
+		&.fixed .background{
+			@extend %fixedbg;
+		}
+	}
+
+	$desktop-h: 620px;
+	$tablet-h: 450px;
+	$mobile-h: 340px;
+	.content_feature_section{
+		$tb: 1450px;
+		@include media_query($tb){
+			height: $tablet-h;
+		}
+		@include media_query($mb){
+			height: $mobile-h;
+		}
+		width: 100%;
+		height: $desktop-h;
+		position: relative;
+		overflow: hidden;
+
+		.desktop_bg{
+			@include media_query($tb){
+				display: none;
+			}
+			@extend %bg-image;
+			background-position: left;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		.respo_bg{
+			@include media_query($tb){
+				display: block;
+			}
+			display: none;
+			@extend %bg-image;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		.content_container{
+			padding: 0;
+			border: none;
+
+			//Remove bottom whitespace for buttons
+			//and p tags, since we are centering vertically
+			p:last-of-type{
+				margin-bottom: 0;
+			}
+
+			.jacloc-button{
+				margin-bottom: 0;
+			}
+		}
+
+		.content_table{
+			@include media_query($tb){
+				width: 100%;
+			}
+			display: table;
+			width: 40%;
+			float: right;
+			position: relative;
+			z-index: 5;
+
+			&.left_align{
+				float: left;
+			}
+
+			.content{
+				@include media_query($tb){
+					height: $tablet-h;
+					text-align: center;
+				}
+				@include media_query($mb){
+					height: $mobile-h;
+				}
+				display: table-cell;
+				height: $desktop-h;
+				vertical-align: middle;
+				text-align: left;
+			}
+		}
+	}
+}
+
+//Global Pagination styling
+ .pagination{
+    margin-top: 20px;
+    font-family: $headingfont;
+    font-size: ems(18px);
+    line-height: 26px;
+    text-transform: uppercase;
+    text-align: center;
+    color: $black;
+
+    a{
+        @include transition(color 0.5s ease);
+        color: $black;
+    }
+
+    .page-numbers{
+        text-decoration: underline;
+        margin-right: 5px;
+    }
+
+    .dots{
+        text-decoration: none;
+    }
+
+    .paginationtext{
+        margin-right: 15px;
+    }
+
+    .current,
+    a:hover,
+    a:focus{
+         @include transition(color 0.5s ease);
+        color: $primary;
+    }
+
+    .next,
+    .prev{
+        text-decoration: none;
+    }
+}
+
+
+//404 Page Styling
+.fourohfour{
+	text-align: center;
+
+	h2{
+		@include media_query($mb){
+			font-size: ems(30px);
+			line-height: 32px;
+		}
+	}
+}
+
+
+
+
+

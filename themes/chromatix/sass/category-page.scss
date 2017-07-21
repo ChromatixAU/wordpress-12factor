@@ -1,0 +1,214 @@
+//Specific to category page
+.category_page.page{
+	
+	.page_header{
+		position: relative;
+		overflow: hidden;
+		
+		.inner_header{
+			border-left: none;
+			border-right: none;
+		}
+
+		.header_image{
+			@include media_query($tb){
+				height: 200px;
+			}
+			@extend %bg-image;
+			width: 100%;
+			height: 260px;
+			position: absolute;
+			top: 80px;
+			left: 0;
+		}
+	}
+
+	.inner_wrap{
+		padding-top: 70px;
+	}
+}
+
+//Shared between category page and front page
+.category_page,
+.front_page{
+	
+	.categories_content .category{
+		@include media_query($tb){
+			text-align: center;
+		}
+		@include media_query($mb){
+			padding-bottom: 40px;
+		}
+		padding-bottom: 60px;
+	
+		&.fadeonview.off{
+			@include media_query($tb){
+	        	@include transform(translate(0, 0));
+	     	 }
+	      @include transform(translate(0, 70px));
+		}
+		
+		.category_title{
+			@include media_query($tb){
+				font-size: ems(24px);
+				line-height: 24px;
+				margin-bottom: 5px;
+			}
+			@include media_query($mb){
+				font-size: ems(22px);
+				line-height: 22px;
+			}
+			display: inline-block;
+			font-size: ems(28px);
+			line-height: 28px;
+			font-weight: 400;
+			position: relative;
+		}
+
+		$single-col: 640px;
+		.products_wrap{
+			@include media_query($tb){
+				max-width: 700px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			@include media_query($single-col){
+				max-width: 320px;
+			}	
+		
+			.product{
+				@include media_query($tb){
+					width: 48%;
+					margin-top: 25px;
+				}
+				@include media_query($single-col){
+					width: 100%;
+				}
+				display: block;
+				width: 23%;
+				float: left;
+				margin-bottom: 30px;
+				border: 1px solid #{$product-border};
+				box-sizing: border-box;
+				
+
+				$thumb-h: 274px;
+				$mb-thumb: 300px;
+				.thumb_wrap{
+					@include media_query($mb){
+						height: $mb-thumb;
+					}
+					width: 100%;
+					height: $thumb-h;
+					background-color: $white;
+					overflow: hidden;
+
+					img{
+						@include media_query($tb){
+							@include untrans;
+						}
+						@include media_query($mb){
+							height: $mb-thumb; //reduce height even before single-col
+						}
+						@include transition(transform 0.4s);
+						@include transform(scale(1));
+						@include bg-trick;
+						height: $thumb-h;
+					}
+				}
+		
+				.title_wrap{
+					display: table;
+					width: 100%;
+					background-color: $white;
+					box-sizing: border-box;
+					padding-left: 10px;
+					padding-right: 10px;
+					
+
+					.inner{
+						@include media_query($single-col){
+							height: 40px;
+						}
+						display: table-cell;
+						vertical-align: middle;
+						text-align: center;
+						height: 55px;
+					}
+
+					.title{
+						@include media_query($tb){
+							font-size: ems(14px);
+						}
+						@include transition(color 0.4s);
+						font-size: ems(16px);
+						font-weight: 700;
+						color: $secondary;
+						text-transform: uppercase;
+					}
+				}
+
+				
+				&:hover{
+					text-decoration: none;
+					
+					.thumb_wrap img{
+						@include media_query($tb){
+							@include transform(scale(1));
+						}
+						@include transform(scale(1.1));
+					}
+
+					.title{
+						color: $lightblue;
+					}
+				}
+
+				//4 Column
+				&:nth-of-type(4n + 1){
+					@include media_query($tb){
+						clear: none;
+					}
+					clear: both;
+				}
+
+				&:nth-of-type(4n + 2){
+					@include media_query($tb){
+						margin-left: 0;
+						margin-right: 0;
+					}
+					margin-left: 2.66%;
+					margin-right: 2.66%;
+				}
+
+				&:nth-of-type(4n + 3){
+					@include media_query($tb){
+						margin-right: 0;
+					}
+					margin-right: 2.66%;
+				}
+
+				//2 Column (Tablet)
+				&:nth-of-type(2n + 1){
+					@include media_query($tb){
+						clear: both;
+						margin-right: 4%;
+					}
+					@include media_query($single-col){
+						margin-right: 0;
+					}
+				}
+			}//end product
+		}
+
+		.button_wrap{
+			@include media_query($tb){
+				padding-top: 35px;
+			}
+			padding-top: 60px;
+		}
+
+
+	}
+
+}

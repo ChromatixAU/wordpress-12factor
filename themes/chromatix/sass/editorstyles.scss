@@ -1,0 +1,287 @@
+@import "master";
+
+/* ===================== GENERAL STYLING - CONTENT CONTAINER ====================== */
+
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+
+.content_container {
+	@include media_query($small){
+		padding: 0;
+		border: none;
+	}
+	width: $content_width;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 60px;
+	padding-right: 60px;
+	border-left: 1px solid #{$lines};
+	border-right: 1px solid #{$lines};
+
+	// @include transition(width 0.5s ease);
+
+	// @include media_query(1400px) {
+	// 	width: 1150px;
+	// }
+
+	@include media_query($small) {
+		width: 1175px;
+	}
+
+	@include media_query($tb) {
+		width: 93%;
+		padding-left: 3.5%;
+		padding-right: 3.5%;
+	}
+	// @include media_query(1200px) {
+	// 	width: 1000px;
+	// }
+
+	// @include media_query(1100px) {
+	// 	width: 960px;
+	// }
+}
+
+// **************************** GENERAL STYLING **************************** //
+
+html, body {
+	// !important's are to override the CSS reset
+	line-height: $body_lh;
+	font-family: $bodyfont !important;
+	font-size: $bodysize !important;
+	color: $bodycolor;
+}
+
+::-moz-selection { /* Code for Firefox */
+    color: $truewhite !important;
+    background: $primary !important;
+}
+
+::selection {
+    color: $truewhite !important;
+    background: $primary !important;
+}
+
+.chr_content{
+	@include media_query($tb){
+		font-size: ems(15px);
+	}
+	@include media_query($mb){
+		font-size: ems(14px);
+	}
+
+	background-color: $bggrey;
+	font-weight: 300;
+	
+	.jacloc_sect{
+		display: block;
+		width: 100%;
+		border-bottom: 1px solid #{$lines};
+	}
+	
+	a{
+		@include transition(color 0.4s);
+		color: $blue;
+		font-weight: 400;
+		text-decoration: none;
+
+		&:hover,
+		&:focus{
+			color: $lightblue;
+		}
+	}
+
+	img,
+	iframe,
+	object,
+	embed{
+		max-width: 100%;
+	}
+
+	iframe{
+		position: relative;
+		z-index: 5;
+        width: 100%;
+        height: 450px;
+
+        @include media_query($tb){
+            width: 100%;
+            height: 400px;
+        }
+
+        @include media_query($mb){
+            height: 175px;
+        }
+    }
+
+	img {
+		height: auto;
+		max-width: 100%;
+
+		&.alignnone {}
+
+		&.aligncenter {
+			display: block;
+			margin: 0 auto;
+
+		}
+
+		&.alignleft {
+			float: left;
+			max-width: 45%;
+			padding-top: 10px;
+			border-right: 35px solid $truewhite;
+			clear: both;
+
+			@include media_query(600px) {
+				float: none;
+				display: block;
+				max-width: 100%;
+				padding: 0;
+				margin: auto;
+				border-right: 0;
+			}
+		}
+
+		&.alignright {
+			float: right;
+			max-width: 45%;
+			padding-top: 10px;
+			border-left: 35px solid $truewhite;
+			clear: both;
+
+			@include media_query(600px) {
+				float: none;
+				display: block;
+				max-width: 100%;
+				padding: 0;
+				margin: auto;
+				border-left: 0;
+			}
+		}
+
+	}
+
+	p{
+		@include media_query($mb){
+			margin-bottom: 15px;
+		}
+		margin-bottom: 20px;
+	}
+
+	strong,
+	b{
+		font-weight: 700;
+	}
+	
+	em,
+	i{
+		font-style: italic;
+	}
+
+	small{
+		font-size: ems(12px);
+	}
+	
+
+	h1{
+		@extend %page-heading;
+	}
+
+	h2{
+		@include media_query($mb){
+			margin-bottom: 15px;
+		}
+		@extend %primary-heading;
+		margin-bottom: 25px;
+	}
+
+	h3{
+		@include media_query($mb){
+			margin-bottom: 10px;
+		}
+		@extend %secondary-heading;
+		margin-bottom: 20px;
+	}
+
+	h4{
+		margin-bottom: 8px;
+		font-size: ems(16px);
+		font-weight: 700;
+		line-height: 23px;
+		color: $secondary;
+		text-transform: uppercase;
+	}
+
+	h5,
+	h6{
+		font-size: ems(14px);
+		font-weight: 700;
+		line-height: 23px;
+		color: $primary;
+	}
+
+	ul li {
+		display: block;
+		position: relative;
+		padding-left: 25px;
+		margin-bottom: 10px;
+		
+		&:before{
+			@include transform(rotate(45deg));
+			display: inline-block;
+			content: '';
+			width: 8px;
+			height: 8px;
+			position: absolute;
+			top: 6px;
+			left: 0;
+			line-height: 26px;
+			vertical-align: middle;
+
+			background-color: $primary;
+			//background-size: contain;
+		}
+	}
+
+	ol{
+		@include vendor(padding-start, 0); //webkit override
+		margin: 0;
+		margin-bottom: 20px;
+		padding: 0;
+		list-style-type: none;
+		counter-reset: step-counter;
+
+		li {
+			position: relative;
+			margin-bottom: 10px;
+			padding-left: 25px;
+			counter-increment: step-counter;
+
+			&:before{
+				display: block;
+				content: counter(step-counter) ".";
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		}
+	}
+
+	hr{
+		border: none; //Overwrite defaults
+		border-top: 1px solid #{$primary};
+		margin-top: 15px;
+		margin-bottom: 20px;
+	}
+
+	mark{
+		background-color: transparent;
+		color: $pink;
+	}
+
+	.jacloc-button{
+		@extend %button;
+		margin-bottom: 8px;
+	}
+
+}
