@@ -37,7 +37,11 @@
     "wpackagist-theme/twentyfifteen": "*",
     "dzuelke/twentyfifteen-child": "*",
     "chromatixau/chromatix": "*",
-    "wpackagist-plugin/advanced-custom-fields": "^4.4"
+    "chromatixau/acf-pro": "*",
+    "wpackagist-plugin/contact-form-7": "^4.8",
+    "wpackagist-plugin/responsive-lightbox-lite": "^1.3",
+    "wpackagist-plugin/mailchimp-for-wp": "^4.1",
+    "wpackagist-plugin/tinymce-advanced": "^4.6"
   },
   "scripts": {
     "wordpress-setup-core-install-prompt": "wp core install --prompt",
