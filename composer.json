@@ -29,7 +29,9 @@
 		"wpackagist-plugin/sendgrid-email-delivery-simplified": "^1.7",
 		"wp-cli/wp-cli": "^1.1.0",
 		"wpackagist-theme/twentyfifteen": "*",
-		"dzuelke/twentyfifteen-child": "*"
+		"dzuelke/twentyfifteen-child": "*",
+		"wpackagist-plugin/advanced-custom-fields": "^4.4",
+		"chromatixau/advanced-custom-fields-pro": "*"
 	},
 	"scripts": {
 		"wordpress-setup-core-install-prompt": "wp core install --prompt",
