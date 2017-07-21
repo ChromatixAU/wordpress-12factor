@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8dede7e35810e15292abae64151793dd",
-    "content-hash": "a18ec51801e17d59446fa7d572ce0300",
+    "hash": "13e45b0d8c5a5d54a66f77b24dfff781",
+    "content-hash": "cb44ff5f0c2898797e2bc4779034eab2",
     "packages": [
         {
             "name": "chromatixau/acf-pro",
@@ -3169,26 +3169,6 @@
             "time": "2017-06-06 12:14:53"
         },
         {
-            "name": "wpackagist-plugin/advanced-custom-fields",
-            "version": "4.4.11",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/advanced-custom-fields/",
-                "reference": "tags/4.4.11"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.4.4.11.zip",
-                "reference": "tags/4.4.11",
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/advanced-custom-fields/"
-        },
-        {
             "name": "wpackagist-plugin/amazon-s3-and-cloudfront",
             "version": "0.9.12",
             "source": {
@@ -3319,7 +3299,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/tinymce-advanced.4.6.3.zip",
-                "reference": null,
+                "reference": "tags/4.6.3",
                 "shasum": null
             },
             "require": {
@@ -3327,6 +3307,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/tinymce-advanced/"
+        },
+        {
+            "name": "wpackagist-plugin/tinymce-and-tinymce-advanced-professsional-formats-and-styles",
+            "version": "1.1.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/tinymce-and-tinymce-advanced-professsional-formats-and-styles/",
+                "reference": "tags/1.1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/tinymce-and-tinymce-advanced-professsional-formats-and-styles.1.1.2.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/tinymce-and-tinymce-advanced-professsional-formats-and-styles/"
         },
         {
             "name": "wpackagist-theme/twentyfifteen",
@@ -3393,6 +3393,26 @@
                 "php"
             ],
             "time": "2017-03-27 23:33:27"
+        },
+        {
+            "name": "wpackagist-plugin/advanced-custom-fields",
+            "version": "4.4.11",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/advanced-custom-fields/",
+                "reference": "tags/4.4.11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.4.4.11.zip",
+                "reference": "tags/4.4.11",
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/advanced-custom-fields/"
         }
     ],
     "aliases": [],
