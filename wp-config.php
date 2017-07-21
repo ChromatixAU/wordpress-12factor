@@ -9,7 +9,7 @@ define('DB_PASSWORD', $db['pass']);
 define('DB_HOST',     $db['host'].':'.$db['port']);
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
-$table_prefix  = 'wp_';
+$table_prefix  = 'chrwp_';
 
 define('AWS_ACCESS_KEY_ID', getenv('AWS_ACCESS_KEY_ID')?:getenv('BUCKETEER_AWS_ACCESS_KEY_ID'));
 define('AWS_SECRET_ACCESS_KEY', getenv('AWS_SECRET_ACCESS_KEY')?:getenv('BUCKETEER_AWS_SECRET_ACCESS_KEY'));
